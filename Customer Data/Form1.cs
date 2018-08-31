@@ -134,6 +134,8 @@ namespace Customer_Data
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            Customer obj = new Customer();
+            obj.delete();
             LoadCustomer();
             clearData();
         }
