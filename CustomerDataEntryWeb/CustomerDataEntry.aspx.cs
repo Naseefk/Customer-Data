@@ -11,7 +11,7 @@ namespace CustomerDataEntryWeb
 {
     public partial class CustomerDataEntry : System.Web.UI.Page
     {
-        public string oldCustName="";
+        public string oldCustName;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadCustomer();
@@ -31,7 +31,7 @@ namespace CustomerDataEntryWeb
 
         protected void gridCustomers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clearData();
+            
             string strCustomerName = gridCustomers.Rows[gridCustomers.SelectedIndex].Cells[1].Text;
             
             DisplayCustomer(strCustomerName);
@@ -69,12 +69,12 @@ namespace CustomerDataEntryWeb
                 status = "0";
             }
 
-            clsSqlServer objInsert = new clsSqlServer();
-            objInsert.InsertCustomer(txtCustomerName.Text,
-                                       ddlCountryName.Text,
-                                       gender,
-                                       hobbies,
-                                       status);
+            //clsSqlServer objInsert = new clsSqlServer();
+            //objInsert.InsertCustomer(txtCustomerName.Text,
+            //                           ddlCountryName.Text,
+            //                           gender,
+            //                           hobbies,
+            //                           status);
 
 
             LoadCustomer();
@@ -94,7 +94,7 @@ namespace CustomerDataEntryWeb
         
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            
+
             
             string gender = "";
             if (radioBtnMale.Checked)
@@ -132,7 +132,7 @@ namespace CustomerDataEntryWeb
                                                     ddlCountryName.Text,
                                                     gender,
                                                     hobbies,
-                                                    status,oldCustName);
+                                                    status, oldCustName);
             LoadCustomer();
             clearData();
 
@@ -151,15 +151,9 @@ namespace CustomerDataEntryWeb
             string strHobbies = objDataSet.Tables[0].Rows[0][3].ToString();
             bool Married = false;
 
-            
-
-            if (objDataSet.Tables[0].Rows[0][4] != DBNull.Value)
-            {
-                Married = Convert.ToBoolean(objDataSet.Tables[0].Rows[0][4]);
-            }
             txtCustomerName.Text = strCustomerName;
-            ddlCountryName.Text= strCountryName;
 
+            ddlCountryName.Text = strCountryName;
             if ((strGender.Length == 0) || strGender.Trim() == "Male")
             {
                 radioBtnMale.Checked = true;
@@ -168,6 +162,23 @@ namespace CustomerDataEntryWeb
             {
                 radioBtnFemale.Checked = true;
             }
+            if (strHobbies == "Painting")
+            {
+                CheckReading.Checked = false;
+                CheckPainting.Checked = true;
+
+            }
+            else
+            {
+                CheckPainting.Checked = false;
+                CheckReading.Checked = true;
+            }
+
+            if (objDataSet.Tables[0].Rows[0][4] != DBNull.Value)
+            {
+                Married = Convert.ToBoolean(objDataSet.Tables[0].Rows[0][4]);
+            }
+            
             if (Married)
             {
                 radioBtnMarried.Checked = true;
@@ -176,15 +187,8 @@ namespace CustomerDataEntryWeb
             {
                 radioBtnUnmarried.Checked = true;
             }
-            if (strHobbies == "Reading")
-            {
-                CheckReading.Checked = true;
-            }
-            else
-            {
-                CheckPainting.Checked = true;
-            }
-            oldCustName = strCustomerName;
+            
+           oldCustName = strCustomerName;
 
 
         }

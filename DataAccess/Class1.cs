@@ -42,7 +42,7 @@ namespace DataAccess
                                     string Country,
                                     string Gender,
                                     string Hobbies,
-                                    string Status)
+                                    bool Status)
         {
 
             string Connectionstring = ConfigurationManager.ConnectionStrings["DbConn"].ToString();
@@ -54,7 +54,7 @@ namespace DataAccess
                                                                               + Country + "','"
                                                                               + Gender + "','"
                                                                               + Hobbies + "',"
-                                                                              + Status + ")";
+                                                                              + Convert.ToInt16(Status) + ")";
                 SqlCommand objCommand = new SqlCommand(strInsertCommand, objConnection);
                 objCommand.ExecuteNonQuery();
                 return true;
@@ -72,7 +72,7 @@ namespace DataAccess
                                     string Country,
                                     string Gender,
                                     string Hobbies,
-                                    string Status,string oldCustName)
+                                    bool Status)
         {
             string Connectionstring = ConfigurationManager.ConnectionStrings["DbConn"].ToString();
             SqlConnection objConnection = new SqlConnection(Connectionstring);
@@ -81,10 +81,10 @@ namespace DataAccess
                                                                                 + Country + "',gender='"
                                                                                 + Gender + "',hobbies='"
                                                                                 + Hobbies + "',status="
-                                                                                + Status+ " where CustomerName='"
-                                                                                + oldCustName + "'";
+                                                                                + Convert.ToInt16(Status)+ " where CustomerName='"
+                                                                                + CustomerName + "'";
             SqlCommand objCommand = new SqlCommand(strUpdateCommand, objConnection);
-             objCommand.ExecuteNonQuery();
+              objCommand.ExecuteNonQuery();
             objConnection.Close();
             return true;
         }

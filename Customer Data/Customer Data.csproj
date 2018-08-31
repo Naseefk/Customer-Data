@@ -111,9 +111,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{ff3757b2-3eaa-428a-b6eb-5ba8aa053767}</Project>
-      <Name>DataAccess</Name>
+    <ProjectReference Include="..\ClassLibrary1\MiddileTier.csproj">
+      <Project>{879fc047-d7b9-4cff-bfeb-e7cd181b3dc5}</Project>
+      <Name>MiddileTier</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

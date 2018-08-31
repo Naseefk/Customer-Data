@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
-using DataAccess;
+using MiddileTier;
 namespace Customer_Data
 {
     public partial class Form1 : Form
@@ -27,6 +27,10 @@ namespace Customer_Data
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
+
+            Customer objCustomer = new Customer();
+            objCustomer.CustomerName = txtCustomerName.Text;
+            objCustomer.CountryName = comboCountryName.Text;
             string gender = "";
             if (radioMale.Checked)
             {
@@ -35,6 +39,8 @@ namespace Customer_Data
             {
                 gender = "Female";
             }
+
+            objCustomer.Gender = gender;
 
             string hobbies = "";
             if (checkPainting.Checked)
@@ -45,29 +51,12 @@ namespace Customer_Data
                 hobbies = "Reading";
             }
 
-            string status = "";
-            if (radioMarried.Checked)
-            {
-                status = "1";
-            }else
-            {
-                status = "0";
-            }
+            objCustomer.Hobbies = hobbies;
+            objCustomer.IsMarried = radioMarried.Checked;
 
-            clsSqlServer objInsert = new clsSqlServer();
-            objInsert.InsertCustomer(txtCustomerName.Text,
-                                       comboCountryName.Text,
-                                       gender,
-                                       hobbies,
-                                       status);
-
-
+            objCustomer.save();
             LoadCustomer();
-            clearData();
-            //Form2 obj = new Form2();
-            //obj.SetValues(txtCustomerName.Text, comboCountryName.Text.ToString(), gender, hobbies, status);
-            //obj.ShowDialog();
-            
+            clearData();    
         }
 
         private void dtgCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -84,10 +73,10 @@ namespace Customer_Data
         private void LoadCustomer()
         {
 
-            clsSqlServer objSql = new clsSqlServer();
-            DataSet objDataSet = objSql.getCustomer();
-            dtgCustomer.DataSource = objDataSet.Tables[0];
-            
+            Customer obj = new Customer();
+            dtgCustomer.DataSource = obj.loadCustomer();
+           
+
         }
 
         private void dtgCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -98,56 +87,53 @@ namespace Customer_Data
         }
         private void DisplayCustomer(string customerCode)
         {
-            clsSqlServer obj = new clsSqlServer();
-            DataSet objDataSet = obj.getCustomer(customerCode);
+            //clsSqlServer obj = new clsSqlServer();
+            //DataSet objDataSet = obj.getCustomer(customerCode);
 
             
 
-            string strCustomerName = objDataSet.Tables[0].Rows[0][0].ToString();
-            string strCountryName = objDataSet.Tables[0].Rows[0][1].ToString();
-            string strGender = objDataSet.Tables[0].Rows[0][2].ToString();
-            string strHobbies = objDataSet.Tables[0].Rows[0][3].ToString();
-            bool Married = false;
+            //string strCustomerName = objDataSet.Tables[0].Rows[0][0].ToString();
+            //string strCountryName = objDataSet.Tables[0].Rows[0][1].ToString();
+            //string strGender = objDataSet.Tables[0].Rows[0][2].ToString();
+            //string strHobbies = objDataSet.Tables[0].Rows[0][3].ToString();
+            //bool Married = false;
 
-            if (objDataSet.Tables[0].Rows[0][4] != DBNull.Value)
-            {
-                Married = Convert.ToBoolean(objDataSet.Tables[0].Rows[0][4]);
-            }
-            txtCustomerName.Text= strCustomerName;
-            comboCountryName.Text = strCountryName;
+            //if (objDataSet.Tables[0].Rows[0][4] != DBNull.Value)
+            //{
+            //    Married = Convert.ToBoolean(objDataSet.Tables[0].Rows[0][4]);
+            //}
+            //txtCustomerName.Text= strCustomerName;
+            //comboCountryName.Text = strCountryName;
 
-            if((strGender.Length == 0) || strGender.Trim()=="Male")
-            {
-                radioMale.Checked = true;
-            }
-            else
-            {
-                radioFemale.Checked = true;
-            }
-            if (Married)
-            {
-                radioMarried.Checked = true;
-            }else
-            {
-                radioUnmarried.Checked = true;
-            }
-            if (strHobbies == "Reading")
-            {
-                checkReading.Checked = true;
-            }
-            else
-            {
-                checkPainting.Checked = true;
-            }
+            //if((strGender.Length == 0) || strGender.Trim()=="Male")
+            //{
+            //    radioMale.Checked = true;
+            //}
+            //else
+            //{
+            //    radioFemale.Checked = true;
+            //}
+            //if (Married)
+            //{
+            //    radioMarried.Checked = true;
+            //}else
+            //{
+            //    radioUnmarried.Checked = true;
+            //}
+            //if (strHobbies == "Reading")
+            //{
+            //    checkReading.Checked = true;
+            //}
+            //else
+            //{
+            //    checkPainting.Checked = true;
+            //}
 
-            oldCustName = strCustomerName;
+            //oldCustName = strCustomerName;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            clsSqlServer objDelete = new clsSqlServer();
-            objDelete.DeleteCustomer(txtCustomerName.Text);
-
             LoadCustomer();
             clearData();
         }
@@ -165,6 +151,11 @@ namespace Customer_Data
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+
+            Customer obj = new Customer();
+            obj.CustomerName = txtCustomerName.Text;
+            obj.CountryName = comboCountryName.Text;
+
             string gender = "";
             if (radioMale.Checked)
             {
@@ -174,7 +165,7 @@ namespace Customer_Data
             {
                 gender = "Female";
             }
-
+            obj.Gender = gender;
             string hobbies = "";
             if (checkPainting.Checked)
             {
@@ -184,24 +175,10 @@ namespace Customer_Data
             {
                 hobbies = "Reading";
             }
+            obj.Hobbies = hobbies;
+            obj.IsMarried = radioMarried.Checked;
 
-            string status = "";
-            if (radioMarried.Checked)
-            {
-                status = "1";
-            }
-            else
-            {
-                status = "0";
-            }
-
-            clsSqlServer objUpdate = new clsSqlServer();
-            objUpdate.UpdateCustomer(txtCustomerName.Text.Trim(),
-                                                    comboCountryName.Text,
-                                                    gender,
-                                                    hobbies,
-                                                    status,oldCustName);
-            
+            obj.update();
             LoadCustomer();
             clearData();
         }

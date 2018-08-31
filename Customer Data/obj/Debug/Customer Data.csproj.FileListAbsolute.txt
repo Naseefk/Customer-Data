@@ -12,3 +12,5 @@ c:\users\naseef\documents\visual studio 2015\Projects\Customer Data\Customer Dat
 C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\Customer Data\obj\Debug\Customer_Data.Form3.resources
 C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\Customer Data\bin\Debug\DataAccess.dll
 C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\Customer Data\bin\Debug\DataAccess.pdb
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\Customer Data\bin\Debug\MiddleTier.dll
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\Customer Data\bin\Debug\MiddleTier.pdb

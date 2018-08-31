@@ -1,0 +1,7 @@
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\ClassLibrary1\bin\Debug\MiddleTier.dll
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\ClassLibrary1\bin\Debug\MiddleTier.pdb
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\ClassLibrary1\bin\Debug\DataAccess.dll
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\ClassLibrary1\bin\Debug\DataAccess.pdb
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\ClassLibrary1\obj\Debug\MiddileTier.csprojResolveAssemblyReference.cache
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\ClassLibrary1\obj\Debug\MiddleTier.dll
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\ClassLibrary1\obj\Debug\MiddleTier.pdb
