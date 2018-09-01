@@ -27,36 +27,44 @@ namespace Customer_Data
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Customer objCustomer = new Customer();
+                objCustomer.CustomerName = txtCustomerName.Text;
+                objCustomer.CountryName = comboCountryName.Text;
+                string gender = "";
+                if (radioMale.Checked)
+                {
+                    gender = "Male";
+                }
+                else
+                {
+                    gender = "Female";
+                }
 
-            Customer objCustomer = new Customer();
-            objCustomer.CustomerName = txtCustomerName.Text;
-            objCustomer.CountryName = comboCountryName.Text;
-            string gender = "";
-            if (radioMale.Checked)
-            {
-                gender = "Male";
-            }else
-            {
-                gender = "Female";
+                objCustomer.Gender = gender;
+
+                string hobbies = "";
+                if (checkPainting.Checked)
+                {
+                    hobbies = "Painting";
+                }
+                else
+                {
+                    hobbies = "Reading";
+                }
+
+                objCustomer.Hobbies = hobbies;
+                objCustomer.IsMarried = radioMarried.Checked;
+
+                objCustomer.save();
+                LoadCustomer();
+                clearData();
             }
-
-            objCustomer.Gender = gender;
-
-            string hobbies = "";
-            if (checkPainting.Checked)
+            catch(Exception ex)
             {
-                hobbies = "Painting";
-            }else
-            {
-                hobbies = "Reading";
-            }
-
-            objCustomer.Hobbies = hobbies;
-            objCustomer.IsMarried = radioMarried.Checked;
-
-            objCustomer.save();
-            LoadCustomer();
-            clearData();    
+                MessageBox.Show(ex.Message);
+            }   
         }
 
         private void dtgCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -74,7 +82,7 @@ namespace Customer_Data
         {
 
             Customer obj = new Customer();
-            dtgCustomer.DataSource = obj.loadCustomer();
+            dtgCustomer.DataSource = obj.loadCustomer().Tables[0];
            
 
         }
@@ -87,55 +95,56 @@ namespace Customer_Data
         }
         private void DisplayCustomer(string customerCode)
         {
-            //clsSqlServer obj = new clsSqlServer();
-            //DataSet objDataSet = obj.getCustomer(customerCode);
+            Customer obj = new Customer();
+            DataSet objDataSet = obj.loadCustomer(customerCode);
 
-            
 
-            //string strCustomerName = objDataSet.Tables[0].Rows[0][0].ToString();
-            //string strCountryName = objDataSet.Tables[0].Rows[0][1].ToString();
-            //string strGender = objDataSet.Tables[0].Rows[0][2].ToString();
-            //string strHobbies = objDataSet.Tables[0].Rows[0][3].ToString();
-            //bool Married = false;
 
-            //if (objDataSet.Tables[0].Rows[0][4] != DBNull.Value)
-            //{
-            //    Married = Convert.ToBoolean(objDataSet.Tables[0].Rows[0][4]);
-            //}
-            //txtCustomerName.Text= strCustomerName;
-            //comboCountryName.Text = strCountryName;
+            string strCustomerName = objDataSet.Tables[0].Rows[0][0].ToString();
+            string strCountryName = objDataSet.Tables[0].Rows[0][1].ToString();
+            string strGender = objDataSet.Tables[0].Rows[0][2].ToString();
+            string strHobbies = objDataSet.Tables[0].Rows[0][3].ToString();
+            bool Married = false;
 
-            //if((strGender.Length == 0) || strGender.Trim()=="Male")
-            //{
-            //    radioMale.Checked = true;
-            //}
-            //else
-            //{
-            //    radioFemale.Checked = true;
-            //}
-            //if (Married)
-            //{
-            //    radioMarried.Checked = true;
-            //}else
-            //{
-            //    radioUnmarried.Checked = true;
-            //}
-            //if (strHobbies == "Reading")
-            //{
-            //    checkReading.Checked = true;
-            //}
-            //else
-            //{
-            //    checkPainting.Checked = true;
-            //}
+            if (objDataSet.Tables[0].Rows[0][4] != DBNull.Value)
+            {
+                Married = Convert.ToBoolean(objDataSet.Tables[0].Rows[0][4]);
+            }
+            txtCustomerName.Text = strCustomerName;
+            comboCountryName.Text = strCountryName;
 
-            //oldCustName = strCustomerName;
+            if ((strGender.Length == 0) || strGender.Trim() == "Male")
+            {
+                radioMale.Checked = true;
+            }
+            else
+            {
+                radioFemale.Checked = true;
+            }
+            if (Married)
+            {
+                radioMarried.Checked = true;
+            }
+            else
+            {
+                radioUnmarried.Checked = true;
+            }
+            if (strHobbies == "Reading")
+            {
+                checkReading.Checked = true;
+            }
+            else
+            {
+                checkPainting.Checked = true;
+            }
+
+            oldCustName = strCustomerName;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             Customer obj = new Customer();
-            obj.delete();
+            obj.delete(txtCustomerName.Text);
             LoadCustomer();
             clearData();
         }
@@ -153,36 +162,42 @@ namespace Customer_Data
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Customer obj = new Customer();
+                obj.CustomerName = txtCustomerName.Text;
+                obj.CountryName = comboCountryName.Text;
 
-            Customer obj = new Customer();
-            obj.CustomerName = txtCustomerName.Text;
-            obj.CountryName = comboCountryName.Text;
+                string gender = "";
+                if (radioMale.Checked)
+                {
+                    gender = "Male";
+                }
+                else
+                {
+                    gender = "Female";
+                }
+                obj.Gender = gender;
+                string hobbies = "";
+                if (checkPainting.Checked)
+                {
+                    hobbies = "Painting";
+                }
+                else
+                {
+                    hobbies = "Reading";
+                }
+                obj.Hobbies = hobbies;
+                obj.IsMarried = radioMarried.Checked;
 
-            string gender = "";
-            if (radioMale.Checked)
-            {
-                gender = "Male";
+                obj.update();
+                LoadCustomer();
+                clearData();
             }
-            else
+            catch(Exception ex)
             {
-                gender = "Female";
+                MessageBox.Show(ex.Message);
             }
-            obj.Gender = gender;
-            string hobbies = "";
-            if (checkPainting.Checked)
-            {
-                hobbies = "Painting";
-            }
-            else
-            {
-                hobbies = "Reading";
-            }
-            obj.Hobbies = hobbies;
-            obj.IsMarried = radioMarried.Checked;
-
-            obj.update();
-            LoadCustomer();
-            clearData();
         }
     }
 }

@@ -33,3 +33,5 @@ C:\Users\Naseef\documents\visual studio 2015\Projects\Customer Data\CustomerData
 C:\Users\Naseef\documents\visual studio 2015\Projects\Customer Data\CustomerDataEntryWeb\obj\Debug\CustomerDataEntryWeb.pdb
 C:\Users\Naseef\documents\visual studio 2015\Projects\Customer Data\CustomerDataEntryWeb\bin\DataAccess.dll
 C:\Users\Naseef\documents\visual studio 2015\Projects\Customer Data\CustomerDataEntryWeb\bin\DataAccess.pdb
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\CustomerDataEntryWeb\bin\MiddleTier.dll
+C:\Users\Naseef\Documents\Visual Studio 2015\Projects\Customer Data\CustomerDataEntryWeb\bin\MiddleTier.pdb

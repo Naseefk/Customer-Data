@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data;
-using DataAccess;
+using MiddileTier;
 namespace CustomerDataEntryWeb
 {
     public partial class CustomerDataEntry : System.Web.UI.Page
@@ -24,8 +24,9 @@ namespace CustomerDataEntryWeb
         }
         private void LoadCustomer()
         {
-            clsSqlServer obj = new clsSqlServer();
-            gridCustomers.DataSource = obj.getCustomer();
+            Customer obj = new Customer();
+
+            gridCustomers.DataSource = obj.loadCustomer();
             gridCustomers.DataBind();
         }
 
@@ -39,6 +40,9 @@ namespace CustomerDataEntryWeb
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            Customer obj = new Customer();
+            obj.CustomerName = txtCustomerName.Text;
+            obj.CountryName = ddlCountryName.Text;
             string gender = "";
             if (radioBtnMale.Checked)
             {
@@ -48,7 +52,7 @@ namespace CustomerDataEntryWeb
             {
                 gender = "Female";
             }
-
+            obj.Gender = gender;
             string hobbies = "";
             if (CheckPainting.Checked)
             {
@@ -58,25 +62,9 @@ namespace CustomerDataEntryWeb
             {
                 hobbies = "Reading";
             }
-
-            string status = "";
-            if (radioBtnMarried.Checked)
-            {
-                status = "1";
-            }
-            else
-            {
-                status = "0";
-            }
-
-            //clsSqlServer objInsert = new clsSqlServer();
-            //objInsert.InsertCustomer(txtCustomerName.Text,
-            //                           ddlCountryName.Text,
-            //                           gender,
-            //                           hobbies,
-            //                           status);
-
-
+            obj.Hobbies = hobbies;
+            obj.IsMarried = radioBtnMarried.Checked;
+            obj.save();
             LoadCustomer();
             clearData();
         }
@@ -95,7 +83,9 @@ namespace CustomerDataEntryWeb
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
 
-            
+            Customer obj = new Customer();
+            obj.CustomerName = txtCustomerName.Text;
+            obj.CountryName = ddlCountryName.Text;
             string gender = "";
             if (radioBtnMale.Checked)
             {
@@ -105,7 +95,7 @@ namespace CustomerDataEntryWeb
             {
                 gender = "Female";
             }
-
+            obj.Gender = gender;
             string hobbies = "";
             if (CheckPainting.Checked)
             {
@@ -115,33 +105,18 @@ namespace CustomerDataEntryWeb
             {
                 hobbies = "Reading";
             }
-
-            string status = "";
-            if (radioBtnMarried.Checked)
-            {
-                status = "1";
-            }
-            else
-            {
-                status = "0";
-            }
-
-            clsSqlServer objUpdate = new clsSqlServer();
-            
-            objUpdate.UpdateCustomer(txtCustomerName.Text.Trim(),
-                                                    ddlCountryName.Text,
-                                                    gender,
-                                                    hobbies,
-                                                    status, oldCustName);
+            obj.Hobbies = hobbies;
+            obj.IsMarried = radioBtnMarried.Checked;
+            obj.update();
             LoadCustomer();
             clearData();
 
         }
         private void DisplayCustomer(string customerCode)
         {
-            
-            clsSqlServer obj = new clsSqlServer();
-            DataSet objDataSet = obj.getCustomer(customerCode);
+
+            Customer obj = new Customer();
+            DataSet objDataSet = obj.loadCustomer(customerCode);
 
 
 
@@ -195,8 +170,8 @@ namespace CustomerDataEntryWeb
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            clsSqlServer obj = new clsSqlServer();
-            obj.DeleteCustomer(txtCustomerName.Text);
+            Customer obj = new Customer();
+            obj.delete(txtCustomerName.Text);
             clearData();
             LoadCustomer();
 

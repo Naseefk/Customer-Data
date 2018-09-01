@@ -93,10 +93,10 @@ namespace MiddileTier
                                    _Hobbies,
                                    _IsMarried);
         }
-        public void delete()
+        public void delete(string strCustomerName)
         {
             clsSqlServer objDelete = new clsSqlServer();
-            objDelete.DeleteCustomer(_CountryName);
+            objDelete.DeleteCustomer(strCustomerName);
         }
         public void update()
         {
@@ -111,6 +111,11 @@ namespace MiddileTier
         {
             clsSqlServer objSql = new clsSqlServer();
             return objSql.getCustomer();
+        }
+        public DataSet loadCustomer(string strCustomerName)
+        {
+            clsSqlServer objSql = new clsSqlServer();
+            return objSql.getCustomer(strCustomerName);
         }
     }
 }
