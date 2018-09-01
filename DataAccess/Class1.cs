@@ -10,6 +10,21 @@ namespace DataAccess
 {
     public class clsSqlServer
     {
+        public DataSet getUser(string userName, string password)
+        {
+            string Connectionstring = ConfigurationManager.ConnectionStrings["DbConn"].ToString();
+            SqlConnection objConnection = new SqlConnection(Connectionstring);
+            objConnection.Open();
+
+            SqlCommand objCommand = new SqlCommand("select * from Users where UserName='" + userName + "' and Password ='" + password + "' ",objConnection);
+            DataSet objDataset = new DataSet();
+            SqlDataAdapter objDataAdapter = new SqlDataAdapter(objCommand);
+            objDataAdapter.Fill(objDataset);
+
+            objConnection.Close();
+            return objDataset;
+
+        }
         public DataSet getCustomer()
         {
             string Connectionstring = ConfigurationManager.ConnectionStrings["DbConn"].ToString();
@@ -42,7 +57,8 @@ namespace DataAccess
                                     string Country,
                                     string Gender,
                                     string Hobbies,
-                                    bool Status)
+                                    bool Status,
+                                    string Email)
         {
 
             string Connectionstring = ConfigurationManager.ConnectionStrings["DbConn"].ToString();
@@ -54,7 +70,8 @@ namespace DataAccess
                                                                               + Country + "','"
                                                                               + Gender + "','"
                                                                               + Hobbies + "',"
-                                                                              + Convert.ToInt16(Status) + ")";
+                                                                              + Convert.ToInt16(Status) + ",'"
+                                                                              + Email +"')";
                 SqlCommand objCommand = new SqlCommand(strInsertCommand, objConnection);
                 objCommand.ExecuteNonQuery();
                 return true;
@@ -72,7 +89,8 @@ namespace DataAccess
                                     string Country,
                                     string Gender,
                                     string Hobbies,
-                                    bool Status)
+                                    bool Status,
+                                    string Email)
         {
             string Connectionstring = ConfigurationManager.ConnectionStrings["DbConn"].ToString();
             SqlConnection objConnection = new SqlConnection(Connectionstring);
@@ -81,7 +99,8 @@ namespace DataAccess
                                                                                 + Country + "',gender='"
                                                                                 + Gender + "',hobbies='"
                                                                                 + Hobbies + "',status="
-                                                                                + Convert.ToInt16(Status)+ " where CustomerName='"
+                                                                                + Convert.ToInt16(Status)+",Email='"
+                                                                                + Email +"' where CustomerName='"
                                                                                 + CustomerName + "'";
             SqlCommand objCommand = new SqlCommand(strUpdateCommand, objConnection);
               objCommand.ExecuteNonQuery();

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using DataAccess;
 namespace MiddileTier
 {
@@ -15,6 +16,7 @@ namespace MiddileTier
         private string _Gender = "";
         private string _Hobbies = "";
         private bool _IsMarried = false;
+        private string _Email = "";
         
         public string CustomerName
         {
@@ -84,6 +86,30 @@ namespace MiddileTier
                 _IsMarried = value;
             }
         }
+
+        public string Email
+        {
+            get
+            {
+                return _Email;
+            }
+
+            set
+            {
+                
+                if (value.Length == 0)
+                {
+                    throw new Exception("Email is required");
+                }
+                Regex o = new Regex("^[a-zA-Z0-9]{1,20}@[a-zA-Z0-9]{1,20}.[a-zA-Z]{2,3}$");
+                if (!o.IsMatch(value))
+                {
+                    throw new Exception("Email address is not a proper format");
+                }
+                _Email = value;
+            }
+        }
+
         public void save()
         {
             clsSqlServer objSave = new clsSqlServer();
@@ -91,7 +117,8 @@ namespace MiddileTier
                                    _CountryName,
                                    _Gender,
                                    _Hobbies,
-                                   _IsMarried);
+                                   _IsMarried,
+                                   _Email);
         }
         public void delete(string strCustomerName)
         {
@@ -105,7 +132,8 @@ namespace MiddileTier
                                      _CountryName,
                                      _Gender,
                                      _Hobbies,
-                                     _IsMarried);
+                                     _IsMarried,
+                                     _Email);
         }
         public DataSet loadCustomer()
         {

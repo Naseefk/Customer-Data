@@ -45,6 +45,8 @@
             this.dtgCustomer = new System.Windows.Forms.DataGridView();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomer)).BeginInit();
@@ -92,7 +94,7 @@
             // 
             this.groupBox1.Controls.Add(this.radioFemale);
             this.groupBox1.Controls.Add(this.radioMale);
-            this.groupBox1.Location = new System.Drawing.Point(37, 111);
+            this.groupBox1.Location = new System.Drawing.Point(37, 141);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(203, 37);
             this.groupBox1.TabIndex = 4;
@@ -125,7 +127,7 @@
             // 
             this.groupBox2.Controls.Add(this.radioUnmarried);
             this.groupBox2.Controls.Add(this.radioMarried);
-            this.groupBox2.Location = new System.Drawing.Point(40, 193);
+            this.groupBox2.Location = new System.Drawing.Point(40, 223);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 46);
             this.groupBox2.TabIndex = 5;
@@ -157,7 +159,7 @@
             // checkReading
             // 
             this.checkReading.AutoSize = true;
-            this.checkReading.Location = new System.Drawing.Point(95, 155);
+            this.checkReading.Location = new System.Drawing.Point(95, 185);
             this.checkReading.Name = "checkReading";
             this.checkReading.Size = new System.Drawing.Size(66, 17);
             this.checkReading.TabIndex = 6;
@@ -167,7 +169,7 @@
             // checkPainting
             // 
             this.checkPainting.AutoSize = true;
-            this.checkPainting.Location = new System.Drawing.Point(191, 154);
+            this.checkPainting.Location = new System.Drawing.Point(191, 184);
             this.checkPainting.Name = "checkPainting";
             this.checkPainting.Size = new System.Drawing.Size(64, 17);
             this.checkPainting.TabIndex = 7;
@@ -177,7 +179,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 155);
+            this.label3.Location = new System.Drawing.Point(37, 185);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 8;
@@ -185,7 +187,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(30, 263);
+            this.btnAdd.Location = new System.Drawing.Point(30, 293);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 9;
@@ -198,14 +200,14 @@
             this.dtgCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgCustomer.Location = new System.Drawing.Point(287, 36);
             this.dtgCustomer.Name = "dtgCustomer";
-            this.dtgCustomer.Size = new System.Drawing.Size(595, 250);
+            this.dtgCustomer.Size = new System.Drawing.Size(595, 280);
             this.dtgCustomer.TabIndex = 10;
             this.dtgCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgCustomer_CellClick);
             this.dtgCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgCustomer_CellContentClick);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(192, 263);
+            this.btnDelete.Location = new System.Drawing.Point(192, 293);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 11;
@@ -215,7 +217,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(111, 263);
+            this.btnUpdate.Location = new System.Drawing.Point(111, 293);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 11;
@@ -223,11 +225,29 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(34, 103);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Email";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(140, 100);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(100, 20);
+            this.txtEmail.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(896, 327);
+            this.ClientSize = new System.Drawing.Size(896, 343);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.dtgCustomer);
@@ -273,6 +293,8 @@
         private System.Windows.Forms.DataGridView dtgCustomer;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtEmail;
     }
 }
 
