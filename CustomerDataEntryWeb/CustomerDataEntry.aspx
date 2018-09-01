@@ -21,11 +21,15 @@
                 <asp:ListItem>England</asp:ListItem>
             </asp:DropDownList>
         </p>
+        <p>
+            <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
+            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+        </p>
         <asp:RadioButton ID="radioBtnMale" runat="server" GroupName="Gender" Text="Male" />
         <asp:RadioButton ID="radioBtnFemale" runat="server" GroupName="Gender" Text="Female" />
         <p>
-            <asp:CheckBox ID="CheckReading" runat="server" Text="Reading" />
-            <asp:CheckBox ID="CheckPainting" runat="server" Text="Painting" />
+            <asp:CheckBox ID="CheckReading" runat="server" Text="Reading" OnCheckedChanged="CheckReading_CheckedChanged" />
+            <asp:CheckBox ID="CheckPainting" runat="server" Text="Painting" OnCheckedChanged="CheckPainting_CheckedChanged" />
         </p>
         <asp:RadioButton ID="radioBtnMarried" runat="server" GroupName="Status" Text="Married" />
         <asp:RadioButton ID="radioBtnUnmarried" runat="server" GroupName="Status" Text="Unmarried" />

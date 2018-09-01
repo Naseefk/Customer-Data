@@ -32,6 +32,7 @@ namespace Customer_Data
                 Customer objCustomer = new Customer();
                 objCustomer.CustomerName = txtCustomerName.Text;
                 objCustomer.CountryName = comboCountryName.Text;
+                objCustomer.Email = txtEmail.Text;
                 string gender = "";
                 if (radioMale.Checked)
                 {
@@ -104,6 +105,7 @@ namespace Customer_Data
             string strCountryName = objDataSet.Tables[0].Rows[0][1].ToString();
             string strGender = objDataSet.Tables[0].Rows[0][2].ToString();
             string strHobbies = objDataSet.Tables[0].Rows[0][3].ToString();
+            string strEmail = objDataSet.Tables[0].Rows[0][5].ToString();
             bool Married = false;
 
             if (objDataSet.Tables[0].Rows[0][4] != DBNull.Value)
@@ -112,6 +114,7 @@ namespace Customer_Data
             }
             txtCustomerName.Text = strCustomerName;
             comboCountryName.Text = strCountryName;
+            txtEmail.Text = strEmail;
 
             if ((strGender.Length == 0) || strGender.Trim() == "Male")
             {
@@ -152,6 +155,7 @@ namespace Customer_Data
         {
             txtCustomerName.Text = "";
             comboCountryName.SelectedIndex= 0;
+            txtEmail.Text = "";
             radioMale.Checked = false;
             radioFemale.Checked = false;
             radioMarried.Checked = false;
@@ -167,7 +171,7 @@ namespace Customer_Data
                 Customer obj = new Customer();
                 obj.CustomerName = txtCustomerName.Text;
                 obj.CountryName = comboCountryName.Text;
-
+                obj.Email = txtEmail.Text;
                 string gender = "";
                 if (radioMale.Checked)
                 {
